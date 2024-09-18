@@ -1,15 +1,19 @@
 "use client";
 import Image from "next/image";
-import AlukasLogo from "./components/AlukasLogo/AlukasLogo";
 import { useRouter } from "next/navigation";
+import AlukasLogo from "../components/AlukasLogo/AlukasLogo";
 import { useState } from "react";
 import axios from "axios";
-import { setCookie } from "cookies-next";
 
-export default function Home() {
+export default function Register() {
   const router = useRouter();
 
-  const [data, setData] = useState({ email: "", password: "" });
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
 
   const handleChange = ({ currentTarget: input }: any) => {
@@ -19,10 +23,10 @@ export default function Home() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:3001/api/auth";
+      const url = "http://localhost:3001/api/users";
       const { data: res } = await axios.post(url, data);
-      setCookie("token", res.data, { maxAge: 60 * 60 * 24 });
-      window.location.href = "/home";
+      router.push("/");
+      console.log(res.message);
     } catch (error: any) {
       if (
         error.response &&
@@ -50,7 +54,40 @@ export default function Home() {
                     </div>
 
                     <form onSubmit={handleSubmit}>
-                      <p className="mb-4">Please login to your account</p>
+                      <div
+                        className="relative mb-4"
+                        data-twe-input-wrapper-init
+                      >
+                        <input
+                          type="text"
+                          name="firstName"
+                          value={data.firstName}
+                          onChange={handleChange}
+                          className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+                          id="exampleFormControlInput1"
+                          placeholder="First Name"
+                        />
+                        <label className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">
+                          First Name
+                        </label>
+                      </div>
+                      <div
+                        className="relative mb-4"
+                        data-twe-input-wrapper-init
+                      >
+                        <input
+                          type="text"
+                          name="lastName"
+                          value={data.lastName}
+                          onChange={handleChange}
+                          className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[twe-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-white dark:placeholder:text-neutral-300 dark:autofill:shadow-autofill dark:peer-focus:text-primary [&:not([data-twe-input-placeholder-active])]:placeholder:opacity-0"
+                          id="exampleFormControlInput1"
+                          placeholder="Last Name"
+                        />
+                        <label className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[twe-input-state-active]:-translate-y-[0.9rem] peer-data-[twe-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-400 dark:peer-focus:text-primary">
+                          Last Name
+                        </label>
+                      </div>
                       <div
                         className="relative mb-4"
                         data-twe-input-wrapper-init
@@ -98,32 +135,32 @@ export default function Home() {
                               "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                           }}
                         >
-                          Log in
-                        </button>
-                      </div>
-
-                      {error && (
-                        <div className="text-red-500 text-center">{error}</div>
-                      )}
-
-                      <div className="flex items-center justify-between pb-6">
-                        <p
-                          onClick={() => router.push("/register")}
-                          className="mb-0 me-2 cursor-pointer"
-                        >
-                          Don't have an account?
-                        </p>
-                        <button
-                          onClick={() => router.push("/register")}
-                          type="button"
-                          className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-danger-50/50 hover:text-danger-600 focus:border-danger-600 focus:bg-danger-50/50 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-rose-950 dark:focus:bg-rose-950"
-                          data-twe-ripple-init
-                          data-twe-ripple-color="light"
-                        >
-                          Register
+                          REGISTER
                         </button>
                       </div>
                     </form>
+
+                    {error && (
+                      <div className="text-red-500 text-center">{error}</div>
+                    )}
+
+                    <div className="flex items-center justify-between pb-6">
+                      <p
+                        onClick={() => router.push("/")}
+                        className="mb-0 me-2 cursor-pointer"
+                      >
+                        Have an account?
+                      </p>
+                      <button
+                        onClick={() => router.push("/")}
+                        type="button"
+                        className="inline-block rounded border-2 border-danger px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-danger transition duration-150 ease-in-out hover:border-danger-600 hover:bg-danger-50/50 hover:text-danger-600 focus:border-danger-600 focus:bg-danger-50/50 focus:text-danger-600 focus:outline-none focus:ring-0 active:border-danger-700 active:text-danger-700 dark:hover:bg-rose-950 dark:focus:bg-rose-950"
+                        data-twe-ripple-init
+                        data-twe-ripple-color="light"
+                      >
+                        Login
+                      </button>
+                    </div>
                   </div>
                 </div>
 
