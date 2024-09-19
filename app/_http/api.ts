@@ -14,4 +14,9 @@ export const api = {
     collections: "collections",
     dataWithId: "collections/{{id}}",
   },
+  autmnApi: {
+    baseUrl: "http://localhost:3001/api",
+    autmns: "autmns",
+    dataWithId: "autmns/{{id}}",
+  },
 };

@@ -4,6 +4,8 @@ import HomeSwiper from "../components/HomeSwiper/HomeSwiper";
 import Fashions from "../components/Fashions/Fashions";
 import Categories from "../components/Categories/Categories";
 import Collection from "../components/Collection/Collection";
+import FindShops from "../components/FIndShops/FindShops";
+import AutmnCollection from "../components/AutmnCollection/AutmnCollection";
 
 const HomePage = () => {
   return (
@@ -19,6 +21,12 @@ const HomePage = () => {
       </div>
       <div>
         <Collection />
+      </div>
+      <div>
+        <FindShops />
+      </div>
+      <div>
+        <AutmnCollection />
       </div>
     </div>
   );
