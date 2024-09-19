@@ -64,6 +64,12 @@ const Collection = () => {
                           New
                         </p>
                       )}
+
+                      {collection?.hot && (
+                        <p className="bg-blue-600 px-2 text-white max-w-[50px]">
+                          HOT
+                        </p>
+                      )}
                     </div>
 
                     <div>
