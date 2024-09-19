@@ -7,6 +7,11 @@ export const api = {
   categoryApi: {
     baseUrl: "http://localhost:3001/api",
     categories: "categories",
-    dataWithId: "blogs/{{id}}",
+    dataWithId: "categories/{{id}}",
+  },
+  collectionApi: {
+    baseUrl: "http://localhost:3001/api",
+    collections: "collections",
+    dataWithId: "collections/{{id}}",
   },
 };
