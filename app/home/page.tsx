@@ -8,6 +8,7 @@ import FindShops from "../components/FIndShops/FindShops";
 import AutmnCollection from "../components/AutmnCollection/AutmnCollection";
 import SmallCollectionCards from "../components/SmallCollectionCards/SmallCollectionCards";
 import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
+import CustomerReview from "../components/CustomerReview/CustomerReview";
 
 const HomePage = () => {
   return (
@@ -35,6 +36,9 @@ const HomePage = () => {
       </div>
       <div>
         <FeaturedProducts />
+      </div>
+      <div>
+        <CustomerReview />
       </div>
     </div>
   );
