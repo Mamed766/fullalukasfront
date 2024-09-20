@@ -10,6 +10,7 @@ import SmallCollectionCards from "../components/SmallCollectionCards/SmallCollec
 import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 import CustomerReview from "../components/CustomerReview/CustomerReview";
 import ReadJournal from "../components/ReadJournal/ReadJournal";
+import FollowUs from "../components/FollowUs/FollowUs";
 
 const HomePage = () => {
   return (
@@ -43,6 +44,9 @@ const HomePage = () => {
       </div>
       <div>
         <ReadJournal />
+      </div>
+      <div>
+        <FollowUs />
       </div>
     </div>
   );
