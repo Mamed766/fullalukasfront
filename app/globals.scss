@@ -68,3 +68,19 @@
   width: 5px;
   height: 5px;
 }
+
+.reviewSwiper .swiper-pagination-bullet {
+  background-color: transparent;
+  border: 1px solid black;
+  width: 5px;
+  height: 5px;
+  opacity: 0.5;
+  transform: translateY(10px);
+}
+
+.reviewSwiper .swiper-pagination-bullet-active {
+  background-color: black;
+  opacity: 1;
+  width: 5px;
+  height: 5px;
+}
