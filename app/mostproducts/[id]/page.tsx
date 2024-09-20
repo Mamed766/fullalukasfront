@@ -12,10 +12,10 @@ const page = () => {
   const { id } = useParams();
 
   const { data, isLoading, error } = useRequest(
-    () => (id ? `collections/${id}` : null),
+    () => (id ? `features/${id}` : null),
     {
       method: "GET",
-      module: "collectionApi",
+      module: "featuredApi",
     }
   );
 
@@ -70,9 +70,9 @@ const page = () => {
           </div>
         </div>
       </div>
-      <Collection />
-      <AutmnCollection />
       <FeaturedProducts />
+      <AutmnCollection />
+      <Collection />
     </div>
   );
 };

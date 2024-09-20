@@ -3,6 +3,7 @@ import { useRequest } from "@/app/_http/axiosFetcher";
 import AlukasLogo from "@/app/components/AlukasLogo/AlukasLogo";
 import AutmnCollection from "@/app/components/AutmnCollection/AutmnCollection";
 import Collection from "@/app/components/Collection/Collection";
+import FeaturedProducts from "@/app/components/FeaturedProducts/FeaturedProducts";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import React from "react";
@@ -71,6 +72,7 @@ const page = () => {
       </div>
       <AutmnCollection />
       <Collection />
+      <FeaturedProducts />
     </div>
   );
 };

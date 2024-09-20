@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -6,12 +7,19 @@ import { Pagination } from "swiper/modules";
 import { useRequest } from "@/app/_http/axiosFetcher";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const FeaturedProducts = () => {
+  const router = useRouter();
+
   const { data, isLoading, error } = useRequest("features", {
     method: "GET",
     module: "featuredApi",
   });
+
+  const handleContinueReading = (id: string) => {
+    router.push(`/mostproducts/${id}`);
+  };
 
   console.log(data);
 
@@ -55,7 +63,9 @@ const FeaturedProducts = () => {
           {data &&
             data?.collections.map((collection: any, index: number) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide
+                  onClick={() => handleContinueReading(collection._id)}
+                >
                   <div className="relative mt-10  group overflow-hidden">
                     <Image
                       alt=""
@@ -64,7 +74,7 @@ const FeaturedProducts = () => {
                       width={1000}
                       quality={100}
                       objectFit="cover"
-                      className="object-cover "
+                      className="object-cover cursor-pointer"
                     />
 
                     <div className="absolute cursor-pointer group-hover:right-5 top-3 right-[-4rem] bg-white p-3 rounded-full duration-300">

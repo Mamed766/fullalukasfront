@@ -76,7 +76,7 @@ const AutmnCollection = () => {
                     width={1000}
                     quality={100}
                     objectFit="cover"
-                    className="object-cover "
+                    className="object-cover cursor-pointer "
                   />
 
                   <div className="absolute cursor-pointer group-hover:right-5 top-3 right-[-4rem] bg-white p-3 rounded-full duration-300">
