@@ -7,6 +7,7 @@ import Collection from "../components/Collection/Collection";
 import FindShops from "../components/FIndShops/FindShops";
 import AutmnCollection from "../components/AutmnCollection/AutmnCollection";
 import SmallCollectionCards from "../components/SmallCollectionCards/SmallCollectionCards";
+import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 
 const HomePage = () => {
   return (
@@ -31,6 +32,9 @@ const HomePage = () => {
       </div>
       <div>
         <SmallCollectionCards />
+      </div>
+      <div>
+        <FeaturedProducts />
       </div>
     </div>
   );

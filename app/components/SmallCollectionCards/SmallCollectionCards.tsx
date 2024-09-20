@@ -4,7 +4,7 @@ import SmallCollectionCard from "../SmallCollectionCard/SmallCollectionCard";
 
 const SmallCollectionCards = () => {
   return (
-    <div className="max-w-[1280px] gap-2  justify-between flex flex-wrap mx-auto mt-10">
+    <div className="max-w-[1280px] gap-2  justify-between flex flex-wrap mx-auto mt-20">
       <SmallCollectionCard
         title="New Bangles Collection"
         desc="Catch the higlihht in the roof"
