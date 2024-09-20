@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,12 +9,19 @@ import { Pagination } from "swiper/modules";
 import { useRequest } from "@/app/_http/axiosFetcher";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 const AutmnCollection = () => {
+  const router = useRouter();
+
   const { data, isLoading, error } = useRequest("autmns", {
     method: "GET",
     module: "autmnApi",
   });
+
+  const handleContinueReading = (id: string) => {
+    router.push(`/autumns/${id}`);
+  };
 
   console.log(data);
 
@@ -56,7 +65,9 @@ const AutmnCollection = () => {
         {data &&
           data.collections.map((collection: any, index: number) => {
             return (
-              <SwiperSlide>
+              <SwiperSlide
+                onClick={() => handleContinueReading(collection._id)}
+              >
                 <div className="relative mt-10  group overflow-hidden">
                   <Image
                     alt=""

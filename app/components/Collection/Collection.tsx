@@ -7,11 +7,18 @@ import { Pagination } from "swiper/modules";
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useRequest } from "@/app/_http/axiosFetcher";
+import { useRouter } from "next/navigation";
 const Collection = () => {
+  const router = useRouter();
+
   const { data, isLoading, error } = useRequest("collections", {
     method: "GET",
     module: "collectionApi",
   });
+
+  const handleContinueReading = (id: string) => {
+    router.push(`/collections/${id}`);
+  };
 
   return (
     <div className="max-w-[1280px] mx-auto">
@@ -54,7 +61,9 @@ const Collection = () => {
           {data &&
             data.collections.map((collection: any, index: number) => {
               return (
-                <SwiperSlide>
+                <SwiperSlide
+                  onClick={() => handleContinueReading(collection._id)}
+                >
                   <div className="relative mt-10  group overflow-hidden">
                     <Image
                       alt=""
@@ -63,7 +72,7 @@ const Collection = () => {
                       width={1000}
                       quality={100}
                       objectFit="cover"
-                      className="object-cover "
+                      className="object-cover  cursor-pointer"
                     />
 
                     <div className="absolute cursor-pointer group-hover:right-5 top-3 right-[-4rem] bg-white p-3 rounded-full duration-300">
