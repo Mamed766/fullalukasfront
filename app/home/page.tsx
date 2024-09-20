@@ -9,6 +9,7 @@ import AutmnCollection from "../components/AutmnCollection/AutmnCollection";
 import SmallCollectionCards from "../components/SmallCollectionCards/SmallCollectionCards";
 import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 import CustomerReview from "../components/CustomerReview/CustomerReview";
+import ReadJournal from "../components/ReadJournal/ReadJournal";
 
 const HomePage = () => {
   return (
@@ -39,6 +40,9 @@ const HomePage = () => {
       </div>
       <div>
         <CustomerReview />
+      </div>
+      <div>
+        <ReadJournal />
       </div>
     </div>
   );
