@@ -19,6 +19,11 @@ export const api = {
     features: "features",
     dataWithId: "features/{{id}}",
   },
+  shopApi: {
+    baseUrl: "http://localhost:3001/api",
+    shopitems: "shopitems",
+    dataWithId: "shopitems/{{id}}",
+  },
   autmnApi: {
     baseUrl: "http://localhost:3001/api",
     autmns: "autmns",
