@@ -68,13 +68,16 @@ const Header = ({ handleSideBar }: any) => {
             <div className="">
               <ul className="flex gap-2">
                 <li
-                  onClick={() => router.push("/")}
+                  onClick={() => router.push("/home")}
                   className="flex relative group   cursor-pointer font-semibold gap-2 items-center"
                 >
                   HOME <TfiAngleDown className="text-[10px]" />
                   <Dropdown items={homeItems} />
                 </li>
-                <li className="flex relative group  cursor-pointer font-semibold gap-2 items-center">
+                <li
+                  onClick={() => router.push("/shop")}
+                  className="flex relative group  cursor-pointer font-semibold gap-2 items-center"
+                >
                   SHOP <TfiAngleDown className="text-[10px]" />
                 </li>
                 <li className="flex  cursor-pointer font-semibold gap-2 items-center">

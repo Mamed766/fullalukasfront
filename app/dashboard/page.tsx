@@ -7,7 +7,6 @@ import { mutate } from "swr";
 import { useRouter } from "next/navigation";
 
 const Page = () => {
-  const [selectedCard, setSelectedCard] = useState<any>(null);
   const [isPostModalOpen, setIsPostModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [editData, setEditData] = useState(null);
