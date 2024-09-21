@@ -139,7 +139,7 @@ const Page = () => {
                       setMaterial("");
                       setColor([]);
                     } else {
-                      setCollectionType(value);
+                      setCollectionType(value.filter((item) => item !== "All"));
                     }
                   }}
                   value={collectionType}
