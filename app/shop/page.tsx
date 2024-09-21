@@ -41,7 +41,7 @@ const page = () => {
           <div className="flex items-center">
             <div
               onClick={() => router.push("/home")}
-              className="flex items-center text-[#555]"
+              className="flex items-center text-[#555] cursor-pointer"
             >
               Home <LiaAngleRightSolid />
             </div>
