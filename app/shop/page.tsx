@@ -19,13 +19,16 @@ import {
   CheckboxGroup,
   Checkbox,
 } from "@chakra-ui/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FaAngleLeft, FaAngleRight, FaRegHeart } from "react-icons/fa";
 import Image from "next/image";
 import axios from "axios";
 
 const Page = () => {
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchParams = useSearchParams();
+
   const [price, setPrice] = useState(5000);
   const [material, setMaterial] = useState("");
   const [color, setColor] = useState<string[]>([]);
@@ -41,6 +44,11 @@ const Page = () => {
     currentPage: 1,
     limit: itemsPerPage,
   });
+
+  useEffect(() => {
+    const search = searchParams.get("search") || "";
+    setSearchQuery(search);
+  }, [searchParams]);
 
   const fetchFilteredData = async () => {
     try {
@@ -62,6 +70,7 @@ const Page = () => {
           maxPrice: maxPriceParam,
           page: currentPage,
           limit: itemsPerPage,
+          search: searchQuery,
         },
       });
       setFilteredData(response.data.collections);
@@ -73,7 +82,7 @@ const Page = () => {
 
   useEffect(() => {
     fetchFilteredData();
-  }, [price, material, color, collectionType, currentPage]);
+  }, [price, material, color, collectionType, currentPage, searchQuery]);
 
   useEffect(() => {
     setCurrentPage(1);

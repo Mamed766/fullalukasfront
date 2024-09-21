@@ -14,13 +14,20 @@ import Dropdown from "@/app/components/Dropdown/Dropdown";
 import Search from "@/app/components/Search/Search";
 import { homeItems } from "@/app/_static/mockdb";
 import { deleteCookie } from "cookies-next";
+import { useState } from "react";
 
 const Header = ({ handleSideBar }: any) => {
   const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+
   const handleLogout = () => {
     deleteCookie("token");
 
     window.location.reload();
+  };
+
+  const handleSearch = () => {
+    router.push(`/shop?search=${encodeURIComponent(searchQuery)}`);
   };
 
   return (
@@ -32,7 +39,11 @@ const Header = ({ handleSideBar }: any) => {
               <RxHamburgerMenu />
             </div>
             <div className="header__mobile">
-              <Search />
+              <Search
+                value={searchQuery}
+                onChange={(value) => setSearchQuery(value)}
+                onSearch={handleSearch}
+              />
             </div>
             <div></div>
             <div className="flex gap-5">
@@ -55,7 +66,11 @@ const Header = ({ handleSideBar }: any) => {
             </div>
           </div>
           <div className="header__xl pb-5 mt-2 px-2">
-            <Search />
+            <Search
+              value={searchQuery}
+              onChange={(value) => setSearchQuery(value)}
+              onSearch={handleSearch}
+            />
           </div>
         </div>
         <div className="border header__mobile p-5 mt-5">
