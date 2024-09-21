@@ -3,7 +3,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import { useRequest } from "@/app/_http/axiosFetcher";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
@@ -35,7 +35,11 @@ const FeaturedProducts = () => {
           pagination={{
             clickable: true,
           }}
-          modules={[Pagination]}
+          autoplay={{
+            delay: 1500,
+            disableOnInteraction: false,
+          }}
+          modules={[Pagination, Autoplay]}
           className="featuredSwiper"
           breakpoints={{
             0: {

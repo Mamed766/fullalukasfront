@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Pagination } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { useRequest } from "@/app/_http/axiosFetcher";
@@ -33,6 +33,10 @@ const Collection = () => {
           pagination={{
             clickable: true,
           }}
+          autoplay={{
+            delay: 1500,
+            disableOnInteraction: false,
+          }}
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -55,7 +59,7 @@ const Collection = () => {
               spaceBetween: 50,
             },
           }}
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay]}
           className="collectionSwiper"
         >
           {data &&
