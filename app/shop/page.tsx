@@ -86,7 +86,7 @@ const Page = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [price, material, color, collectionType]);
+  }, [price, material, color, collectionType, searchQuery]);
 
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
