@@ -39,13 +39,24 @@ const page = () => {
           withCredentials: true,
         }
       );
+
+      if (response.status === 200) {
+        const cartResponse = await axios.get(
+          "http://localhost:3001/api/cart-count",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        updateCartCount(cartResponse.data.cartCount);
+        alert("Ürün sepete başarıyla eklendi.");
+      }
+
       console.log("Gönderilen productId:", data?.collection?._id);
       console.log("Gönderilen token:", token);
       console.log("Gönderilen quantity:", 1);
-      if (response.status === 200) {
-        updateCartCount(cartCount + 1);
-        alert("Ürün sepete başarıyla eklendi.");
-      }
 
       console.log(" eklenen data", response.data);
       console.log("dataa", data);
