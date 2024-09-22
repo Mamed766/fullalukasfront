@@ -101,8 +101,11 @@ const Header = ({ handleSideBar }: any) => {
                 <li className="flex  cursor-pointer font-semibold gap-2 items-center">
                   PAGES <TfiAngleDown className="text-[10px]" />
                 </li>
-                <li className="flex  cursor-pointer font-semibold gap-2 items-center">
-                  BLOGS <TfiAngleDown className="text-[10px]" />
+                <li
+                  onClick={() => router.push("/contact")}
+                  className="flex  cursor-pointer font-semibold gap-2 items-center"
+                >
+                  CONTACT <TfiAngleDown className="text-[10px]" />
                 </li>
                 <li
                   onClick={() => router.push("/dashboard")}
