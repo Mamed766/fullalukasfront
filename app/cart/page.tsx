@@ -40,6 +40,30 @@ const CartPage = () => {
     fetchCart();
   }, []);
 
+  const handleDelete = async (productId: string | undefined) => {
+    try {
+      const token = getCookie("token");
+
+      await axios.delete("http://localhost:3001/api/cart/remove", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: { productId }, // productId'yi body olarak gönderiyoruz
+        withCredentials: true,
+      });
+
+      // Ürünü UI'dan silme
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => item.productId !== productId)
+      );
+    } catch (error: any) {
+      console.error(
+        "Ürün silinirken hata oluştu:",
+        error.response?.data || error.message
+      );
+    }
+  };
+
   return (
     <>
       <div className="pt-[12rem] flex flex-col gap-2">
@@ -51,7 +75,9 @@ const CartPage = () => {
                 <div className="flex flex-col items-center justify-center ">
                   <p className="font-bold">Quantity: {item?.quantity}</p>
                   {item?.title && <p>Başlık: {item?.title}</p>}
-                  {item?.price && <p>Price: {item?.price}</p>}
+                  {item?.price && item?.quantity && (
+                    <p>Total Price: {item.price * item.quantity}</p>
+                  )}
                 </div>
                 {item?.image && (
                   <img
@@ -59,6 +85,12 @@ const CartPage = () => {
                     alt={item.title}
                   />
                 )}
+                <button
+                  className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+                  onClick={() => handleDelete(item?.productId)}
+                >
+                  Sil
+                </button>
               </div>
             ))
           ) : (
