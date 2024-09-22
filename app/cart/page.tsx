@@ -48,11 +48,10 @@ const CartPage = () => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        data: { productId }, // productId'yi body olarak gönderiyoruz
+        data: { productId },
         withCredentials: true,
       });
 
-      // Ürünü UI'dan silme
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.productId !== productId)
       );
@@ -74,7 +73,7 @@ const CartPage = () => {
               <div key={index}>
                 <div className="flex flex-col items-center justify-center ">
                   <p className="font-bold">Quantity: {item?.quantity}</p>
-                  {item?.title && <p>Başlık: {item?.title}</p>}
+                  {item?.title && <p>title: {item?.title}</p>}
                   {item?.price && item?.quantity && (
                     <p>Total Price: {item.price * item.quantity}</p>
                   )}
@@ -86,16 +85,22 @@ const CartPage = () => {
                   />
                 )}
                 <button
-                  className="mt-2 bg-red-500 text-white px-4 py-2 rounded"
+                  className="mt-2 bg-red-600 text-white px-4 py-2 rounded"
                   onClick={() => handleDelete(item?.productId)}
                 >
-                  Sil
+                  Delete
                 </button>
               </div>
             ))
           ) : (
-            <p>Sepetiniz boş.</p>
+            <p>Your Cart is empty</p>
           )}
+        </div>
+
+        <div className="flex justify-center ">
+          <button className="bg-black p-2 rounded text-white hover:bg-white hover:text-black duration-300">
+            Checkout
+          </button>
         </div>
       </div>
     </>
