@@ -42,8 +42,10 @@ const page = () => {
       console.log("Gönderilen productId:", data?.collection?._id);
       console.log("Gönderilen token:", token);
       console.log("Gönderilen quantity:", 1);
-      updateCartCount(cartCount + 1);
-      console.log("TOKEN", token);
+      if (response.status === 200) {
+        updateCartCount(cartCount + 1);
+        alert("Ürün sepete başarıyla eklendi.");
+      }
 
       console.log(" eklenen data", response.data);
       console.log("dataa", data);
