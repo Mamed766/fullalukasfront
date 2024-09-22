@@ -14,16 +14,20 @@ import Dropdown from "@/app/components/Dropdown/Dropdown";
 import Search from "@/app/components/Search/Search";
 import { homeItems } from "@/app/_static/mockdb";
 import { deleteCookie } from "cookies-next";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "@/app/context/CartContext";
 
 const Header = ({ handleSideBar }: any) => {
   const router = useRouter();
+  const { cartCount } = useContext(CartContext);
+
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleLogout = () => {
     deleteCookie("token");
 
     window.location.reload();
+    router.push("/");
   };
 
   const handleSearch = () => {
@@ -54,9 +58,12 @@ const Header = ({ handleSideBar }: any) => {
                 <CiHeart className="text-[2rem]" />
                 <HeaderCircle number={0} />
               </div>
-              <div className="relative cursor-pointer">
+              <div
+                onClick={() => router.push("/cart")}
+                className="relative cursor-pointer"
+              >
                 <CiShoppingCart className="text-[2rem]" />
-                <HeaderCircle number={0} />
+                <HeaderCircle number={cartCount} />
               </div>
               <div>
                 <button onClick={handleLogout} className="text-red-500">

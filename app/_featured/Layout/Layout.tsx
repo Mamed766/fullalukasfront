@@ -3,6 +3,7 @@ import React, { ReactNode, useState } from "react";
 import { usePathname } from "next/navigation";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import { CartProvider } from "../../context/CartContext";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,11 +17,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <>
-      <div className="">
-        {shouldShowLayout && <Header />}
-        {children}
-        {shouldShowLayout && <Footer />}
-      </div>
+      <CartProvider>
+        <div className="">
+          {shouldShowLayout && <Header />}
+          {children}
+          {shouldShowLayout && <Footer />}
+        </div>
+      </CartProvider>
     </>
   );
 };

@@ -22,6 +22,8 @@ const protectedRoutes = [
   "/blog-details",
   "/contact",
   "/success",
+  "/cart",
+  "/dashboard",
 ];
 const publicRoutes = ["/", "/register"];
 

@@ -4,12 +4,16 @@ import AlukasLogo from "@/app/components/AlukasLogo/AlukasLogo";
 import AutmnCollection from "@/app/components/AutmnCollection/AutmnCollection";
 import Collection from "@/app/components/Collection/Collection";
 import FeaturedProducts from "@/app/components/FeaturedProducts/FeaturedProducts";
+import { CartContext } from "@/app/context/CartContext";
+import axios from "axios";
+import { getCookie } from "cookies-next";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 
 const page = () => {
   const { id } = useParams();
+  const { cartCount, updateCartCount } = useContext(CartContext);
 
   const { data, isLoading, error } = useRequest(
     () => (id ? `collections/${id}` : null),
@@ -18,6 +22,38 @@ const page = () => {
       module: "collectionApi",
     }
   );
+
+  const handleAddToCart = async () => {
+    try {
+      const token = getCookie("token");
+      const response = await axios.post(
+        "http://localhost:3001/api/cart/add",
+        {
+          productId: data?.collection?._id,
+          quantity: 1,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log("Gönderilen productId:", data?.collection?._id);
+      console.log("Gönderilen token:", token);
+      console.log("Gönderilen quantity:", 1);
+      updateCartCount(cartCount + 1);
+      console.log("TOKEN", token);
+
+      console.log(" eklenen data", response.data);
+      console.log("dataa", data);
+    } catch (error: any) {
+      console.error(
+        "Sepete eklerken hata oluştu:",
+        error.response?.data || error.message
+      );
+    }
+  };
 
   console.log(data);
 
@@ -64,7 +100,10 @@ const page = () => {
           <p className="text-[#555]">{data?.collection.title}</p>
           <h2 className="text-[20px]">Price: ${data?.collection.price}</h2>
           <div>
-            <button className="bg-black px-[5rem]  mt-10 py-3 text-white">
+            <button
+              onClick={handleAddToCart}
+              className="bg-black px-[5rem]  mt-10 py-3 text-white"
+            >
               ADD TO CART
             </button>
           </div>
