@@ -51,7 +51,6 @@ const page = () => {
         );
 
         updateCartCount(cartResponse.data.cartCount);
-        alert("Ürün sepete başarıyla eklendi.");
       }
 
       console.log("Gönderilen productId:", data?.collection?._id);

@@ -20,7 +20,8 @@ export const CartProvider = ({ children }) => {
             }
           );
 
-          setCartCount(response.data.cartCount); // Backend'den gelen sepet sayısını ayarla
+          console.log("Cart Count from API: ", response.data.cartCount);
+          setCartCount(response.data.cartCount);
         }
       } catch (error) {
         console.error("Sepet sayısı alınamadı:", error);
@@ -33,7 +34,6 @@ export const CartProvider = ({ children }) => {
   const updateCartCount = (count) => {
     setCartCount(count);
   };
-
   return (
     <CartContext.Provider value={{ cartCount, updateCartCount }}>
       {children}
