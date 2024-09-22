@@ -23,6 +23,40 @@ const page = () => {
     }
   );
 
+  const handleAddToCart = async () => {
+    try {
+      const token = getCookie("token");
+      const response = await axios.post(
+        "http://localhost:3001/api/cart/add",
+        {
+          productId: data?.collection?._id,
+          quantity: 1,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log("Gönderilen productId:", data?.collection?._id);
+      console.log("Gönderilen token:", token);
+      console.log("Gönderilen quantity:", 1);
+      if (response.status === 200) {
+        updateCartCount(cartCount + 1);
+        alert("Ürün sepete başarıyla eklendi.");
+      }
+
+      console.log(" eklenen data", response.data);
+      console.log("dataa", data);
+    } catch (error: any) {
+      console.error(
+        "Sepete eklerken hata oluştu:",
+        error.response?.data || error.message
+      );
+    }
+  };
+
   console.log(data);
 
   return (
@@ -68,7 +102,10 @@ const page = () => {
           <p className="text-[#555]">{data?.collection.title}</p>
           <h2 className="text-[20px]">Price: ${data?.collection.price}</h2>
           <div>
-            <button className="bg-black px-[5rem]  mt-10 py-3 text-white">
+            <button
+              onClick={handleAddToCart}
+              className="bg-black px-[5rem]  mt-10 py-3 text-white"
+            >
               ADD TO CART
             </button>
           </div>
