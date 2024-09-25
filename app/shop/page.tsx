@@ -23,6 +23,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FaAngleLeft, FaAngleRight, FaRegHeart } from "react-icons/fa";
 import Image from "next/image";
 import axios from "axios";
+import Loading from "../loading";
 
 const Page = () => {
   const router = useRouter();
@@ -91,6 +92,14 @@ const Page = () => {
   const handlePageChange = (newPage: number) => {
     setCurrentPage(newPage);
   };
+
+  if (!filteredData) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <>

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie } from "cookies-next";
+import Loading from "../loading";
 
 interface CartItem {
   productId?: string;
@@ -13,7 +14,7 @@ interface CartItem {
 
 const CartPage = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchCart = async () => {
       try {
@@ -34,6 +35,8 @@ const CartPage = () => {
           "Sepet alınırken hata oluştu:",
           error.response?.data || error.message
         );
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -62,6 +65,23 @@ const CartPage = () => {
       );
     }
   };
+
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="pt-[14rem] flex justify-center items-center text-[26px]">
+        {" "}
+        Your cart is empty
+      </div>
+    );
+  }
 
   return (
     <>
