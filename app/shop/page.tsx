@@ -119,7 +119,7 @@ const Page = () => {
       <div className="mt-10">
         <Categories />
       </div>
-      <div className="max-w-[1280px] mx-auto mt-20 flex gap-2">
+      <div className="max-w-[1280px] mx-auto mt-20 flex flex-wrap gap-2">
         <aside className="max-w-[15rem] min-w-[15rem]">
           <Accordion allowMultiple>
             <AccordionItem>
